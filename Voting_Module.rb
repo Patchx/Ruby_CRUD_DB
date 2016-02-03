@@ -8,9 +8,9 @@ module Voting_Model
 		@@total_entities = 0 # Tracks sum of all entity and inheirited-type objects
 		def initialize(name)
 			@@total_entities += 1
-			@created = Time.now # Added for future sorting functions
 			@entity_num = @@total_entities
 			@name = name
+			@created = Time.now # Added for future sorting functions
 		end
 	end
 

@@ -3,7 +3,25 @@
 module Load_Text 
 	# For changing text display and input logic
 	# Connects to the interface class
+	def welcome
+		puts "\e[H\e[2J" # Clears the screen
+		puts """
+  ------------------------------
+ |  Voter Sim v0.2              |
+ |                              |
+ |  Created by Robert Anderson  |
+ |  for Wyncode Cohort 4 FLL    |
+  ------------------------------
+
+  < Press ENTER to initialize >
+		"""
+		gets
+		load_text("main")
+		return ask
+	end
+
 	def load_text(variant)
+		# create_options specify which @choices result will generate an entity 
 		@create_options = ["democrat","republican","liberal","conservative","tea_party","socialist","neutral"]
 		case variant
 		when "main"

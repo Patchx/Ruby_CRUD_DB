@@ -39,7 +39,7 @@ module Router
 		when "no"
 			load_text("main")
 		end
-		if @create_options.include?(input)
+		if @create_options.include?(input) # Create entity
 			@database.create(@user_data[-3],@user_data[-5],@user_data[-1]) # (entity, name, group)
 			puts "\n  > #{@user_data[-5]} has been added to the database."
 			load_text("main")

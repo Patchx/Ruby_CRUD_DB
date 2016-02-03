@@ -9,6 +9,7 @@ require "./Tests_Module"
 
 # ---- Classes ----
 class Database
+	include Voting_Model # Defines my entities according to business logic
 	attr_reader :politicians, :voters, :candidate_names, :voter_names
 	def initialize(politicians=[], voters=[])
 		@politicians = politicians
@@ -44,30 +45,13 @@ class Database
 end
 
 class Interface
-	include Load_Text # For changing text display and input logic
+	include Load_Text # For displaying the welcome message and context-specific text
 	include Router # For routing the user along the decision tree
 	def initialize
 		@database = Database.new
 		@choices = {key: "key"} # In case load_text fails
 		@user_data = [] # For passing user inputs to the database
 		@create_options ||= [] # In case load_text fails
-	end
-
-	def welcome
-		puts "\e[H\e[2J" # Clears the screen
-		puts """
-  ------------------------------
- |  Voter Sim v0.1              |
- |                              |
- |  Created by Robert Anderson  |
- |  for Wyncode Cohort 4 FLL    |
-  ------------------------------
-
-  < Press ENTER to initialize >
-		"""
-		gets
-		load_text("main")
-		return ask
 	end
 
 	def ask
@@ -94,9 +78,6 @@ class Interface
 	end
 end
 
-# ---- Imported Model ----
-include Voting_Model
-
 # ---- Initializing Variables ----
 interface = Interface.new
 
@@ -104,8 +85,7 @@ interface = Interface.new
 include Tests
 
 # Run Test
-tests # Uncomment to run the tests
+#tests # Uncomment to run the tests
 
 # ---- Execute ----
-interface = Interface.new
-interface.welcome
+interface.welcome # From Load_Text Module
